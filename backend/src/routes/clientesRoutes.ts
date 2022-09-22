@@ -6,13 +6,13 @@ import { DeleteClientController } from "../controllers/clientsController/deleteC
 
 const client_routes = Router();
 
-client_routes.get("/api/", new GetClientsController().get_all_clients);
-client_routes.get("/api/:id", new GetClientsController().get_client_by_id)
+client_routes.get("/api/clients/", new GetClientsController().get_all_clients);
+client_routes.get("/api/clients/:id", new GetClientsController().get_client_by_id)
 
-client_routes.post("/api/post/", new PostClientController().post_client);
+client_routes.post("/api/clients/", new PostClientController().post_client);
 
-client_routes.put("/api/put/:id", new UpdateClientController().update_client);
+client_routes.put("/api/clients/:id", new UpdateClientController().update_client);
 
-client_routes.delete("/api/delete/:id", new DeleteClientController().delete_client);
+client_routes.delete("/api/clients/:id", new DeleteClientController().delete_client);
 
 export { client_routes }

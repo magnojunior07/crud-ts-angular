@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors"
 import { Request, Response } from "express";
 import { client_routes } from "./routes/clientesRoutes";
 import { provider_routes } from "./routes/providersRoutes";

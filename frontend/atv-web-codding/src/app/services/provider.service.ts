@@ -34,14 +34,32 @@ export class ProviderService {
     return response
 }
 
-createProvider(provider: Provider): Observable<Provider> {
+  createProvider(provider: Provider): Observable<Provider> {
     const created_provider = this.http.post<Provider>(`${this.BASE_URL}/api/providers`, JSON.stringify(provider), this.httpOptions).pipe(
       retry(2),
       catchError(this.handleError)
     )
 
     return created_provider
-}
+  }
+
+  deleteProvider(provider:  Provider) {
+    const deleted_provider = this.http.delete(`${this.BASE_URL}/api/providers/${provider.id}`, this.httpOptions).pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+
+    return deleted_provider
+  }
+
+  editProvider(provider: Provider): Observable<Provider>{
+    const updated_provider = this.http.put<Provider>(`${this.BASE_URL}/api/providers/${provider.id}`, JSON.stringify(provider), this.httpOptions).pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+
+    return updated_provider
+  }
 
   private handleError(err: HttpErrorResponse) {
     console.log(err);

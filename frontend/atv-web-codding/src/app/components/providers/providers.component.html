@@ -11,6 +11,16 @@
     <div class="card">
       <h5 class="card-header">Lista de Fornecedores</h5>
       <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+              <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Pesquisar...">
+                  <span class="input-group-text" id="basic-addon2">
+                      <i class="fa-sharp fa-solid fa-magnifying-glass btn "></i>
+                  </span>
+              </div>
+          </div>
+        </div>
         <table *ngIf="providers.length" class="table table-striped table-hover" >
           <thead>
             <tr>
@@ -25,8 +35,8 @@
               <td>{{provider.name}}</td>
               <td>{{provider.cnpj}}</td>
               <td>
-                <button type="button" class="btn btn-warning btn-sm">Editar</button>
-                <button type="button" class="btn btn-danger btn-sm ml-1">Deletar</button>
+                <button type="button" class="btn btn-warning btn-sm"(click)="editProvider(provider)">Editar</button>
+                <button type="button" class="btn btn-danger btn-sm ml-1"(click)="deleteProvider(provider)">Deletar</button>
               </td>
             </tr>
           </tbody>
@@ -36,7 +46,7 @@
       <div class="card add-provider">
         <h5 class="card-header">Adcionar/Editar Fornecedor</h5>
         <div class="card-body">
-          <form id="add-form" (ngSubmit)="f.form.valid && createProvider(f)" #f="ngForm" novalidate>
+          <form id="add-form" (ngSubmit)="f.form.valid && saveProvider(f)" #f="ngForm" novalidate>
             <div class="form-group">
               <label for="name" class="info-label">Nome Completo</label>
               <input type="text" [(ngModel)]="provider.name" id="name" name="name" #name="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" placeholder="Digite seu nome completo">
@@ -51,8 +61,8 @@
                   CNPJ é obrigatório
               </div>
           </div>
-          <button type="submit" class="btn btn-primary btn-add-client">Salvar</button>
-          <button type="reset" class="btn btn-secondary btn-add-client" (click)="updateForm(f)">Cancelar</button>
+          <button type="submit" class="btn btn-primary btn-add-provider">Salvar</button>
+          <button type="reset" class="btn btn-secondary btn-add-provider" (click)="updateForm(f)">Cancelar</button>
           </form>
         </div>
     </div>

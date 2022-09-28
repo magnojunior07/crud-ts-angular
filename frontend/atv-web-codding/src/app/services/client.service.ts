@@ -1,3 +1,4 @@
+import { NgForm } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -39,6 +40,24 @@ export class ClientService {
       )
 
       return created_client
+  }
+
+  deleteClient(client:  Client) {
+    const deleted_client = this.http.delete(`${this.BASE_URL}/api/clients/${client.id}`, this.httpOptions).pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+
+    return deleted_client
+  }
+
+  editClient(client: Client): Observable<Client>{
+    const updated_client = this.http.put<Client>(`${this.BASE_URL}/api/clients/${client.id}`, JSON.stringify(client), this.httpOptions).pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+
+    return updated_client
   }
 
   private handleError(err: HttpErrorResponse) {

@@ -29,11 +29,26 @@ export class ProviderComponent implements OnInit {
     })
   }
 
-
-  createProvider(form: NgForm) {
-    this.providerService.createProvider(this.provider).subscribe(() => {
-      this.updateForm(form)
+  saveProvider(form: NgForm) {
+    if (this.provider.id !== undefined){
+      this.providerService.editProvider(this.provider).subscribe(() => {
+        this.updateForm(form)
       })
+      } else {
+        this.providerService.createProvider(this.provider).subscribe(() => {
+          this.updateForm(form)
+        })
+    }
+  }
+
+  deleteProvider(provider: Provider) {
+      this.providerService.deleteProvider(provider).subscribe(() => {
+        this.getProvider()
+      })
+  }
+
+  editProvider(provider: Provider) {
+    this.provider = {...provider}
   }
 
   updateForm(form: NgForm) {

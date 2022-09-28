@@ -10,13 +10,16 @@ import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+import { CpfPipe } from './pipes/cpf.pipe';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientsComponent,
     HeaderComponent,
-    ProviderComponent
+    ProviderComponent,
+    CpfPipe
   ],
   imports: [
     BrowserModule,

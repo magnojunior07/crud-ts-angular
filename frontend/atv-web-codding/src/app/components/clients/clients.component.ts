@@ -11,7 +11,7 @@ import { NgForm } from "@angular/forms"
 
 
 export class ClientsComponent implements OnInit {
-  
+
   client = {} as Client
 
   clients: Client[] = [];
@@ -30,10 +30,26 @@ export class ClientsComponent implements OnInit {
     })
   }
 
-  createClient(form: NgForm) {
-    this.clientService.createClient(this.client).subscribe(() => {
-      this.updateForm(form)
+  saveClient(form: NgForm) {
+    if (this.client.id !== undefined){
+      this.clientService.editClient(this.client).subscribe(() => {
+        this.updateForm(form)
       })
+      } else {
+        this.clientService.createClient(this.client).subscribe(() => {
+          this.updateForm(form)
+        })
+    }
+  }
+
+  deleteClient(client: Client) {
+      this.clientService.deleteClient(client).subscribe(() => {
+        this.getClient()
+      })
+  }
+
+  editClient(client: Client) {
+    this.client = {...client}
   }
 
   updateForm(form: NgForm) {

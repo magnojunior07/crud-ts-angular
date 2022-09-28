@@ -6,6 +6,7 @@ import { provider_routes } from "./routes/providersRoutes";
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use(client_routes);
 app.use(provider_routes);
 

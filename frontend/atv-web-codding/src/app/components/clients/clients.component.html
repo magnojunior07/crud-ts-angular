@@ -12,7 +12,7 @@
       <h5 class="card-header">Lista de clientes</h5>
       <div class="card-body">
         <div class="input-group mb-3">
-          <input type="search" class="form-control" placeholder="Pesquisar...">
+          <input type="search" class="form-control" placeholder="Pesquisar..." (keydown)="client_search = search_client($event.key)">
           <span class="input-group-text" id="basic-addon2">
               <i class="fa-sharp fa-solid fa-magnifying-glass btn"></i>
           </span>
@@ -25,7 +25,7 @@
               <td scope="col">CPF</td>
             </tr>
           </thead>
-          <tbody *ngFor="let client of clients">
+          <tbody *ngFor="let client of (clients | searchPipe : client_search)">
             <tr>
               <td>{{client.id}}</td>
               <td>{{client.name}}</td>

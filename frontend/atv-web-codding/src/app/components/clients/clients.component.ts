@@ -2,6 +2,7 @@ import { Client } from './../../models/client';
 import { Component, OnInit } from "@angular/core";
 import { ClientService } from "src/app/services/client.service";
 import { NgForm } from "@angular/forms"
+import { last } from 'rxjs';
 
 @Component({
   selector: "client-component",
@@ -15,6 +16,31 @@ export class ClientsComponent implements OnInit {
   client = {} as Client
 
   clients: Client[] = [];
+
+  client_search: String = ""
+  list_keys: String = ""
+
+
+  search_client(keyup: string) {
+
+    switch(keyup) {
+      case "Backspace":
+        this.list_keys = this.list_keys.slice(0, -1)
+        if(this.list_keys.length <= 1) {
+          this.list_keys = ""
+        }
+      break
+      case "Shift":
+        keyup = ""
+      break
+      default:
+        this.list_keys = this.list_keys + keyup
+    }
+
+    this.client_search = this.list_keys
+
+    return this.client_search
+}
 
   constructor(private clientService: ClientService){};
 

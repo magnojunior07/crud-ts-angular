@@ -14,7 +14,7 @@
         <div class="row">
           <div class="col-12">
               <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="Pesquisar...">
+                  <input type="search" class="form-control" placeholder="Pesquisar..." (keydown)="provider_search = search_provider($event.key)">
                   <span class="input-group-text" id="basic-addon2">
                       <i class="fa-sharp fa-solid fa-magnifying-glass btn "></i>
                   </span>
@@ -29,7 +29,7 @@
               <td scope="col">CNPJ</td>
           </tr>
           </thead>
-          <tbody *ngFor="let provider of providers">
+          <tbody *ngFor="let provider of (providers | searchPipe : provider_search)">
             <tr>
               <td>{{provider.id}}</td>
               <td>{{provider.name}}</td>

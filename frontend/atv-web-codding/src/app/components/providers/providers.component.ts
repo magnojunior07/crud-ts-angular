@@ -15,6 +15,30 @@ export class ProviderComponent implements OnInit {
   provider = {} as Provider
   providers: Provider[] = [];
 
+  provider_search: String = ""
+  list_keys: String = ""
+
+  search_provider(keyup: string) {
+
+    switch(keyup) {
+      case "Backspace":
+        this.list_keys = this.list_keys.slice(0, -1)
+        if(this.list_keys.length <= 1) {
+          this.list_keys = ""
+        }
+      break
+      case "Shift":
+        keyup = ""
+      break
+      default:
+        this.list_keys = this.list_keys + keyup
+    }
+
+    this.provider_search = this.list_keys
+
+    return this.provider_search
+}
+
   constructor(private providerService: ProviderService){};
 
     ngOnInit() {

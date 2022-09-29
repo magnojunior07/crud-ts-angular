@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { CpfPipe } from './pipes/cpf.pipe';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { CpfPipe } from './pipes/cpf.pipe';
     ClientsComponent,
     HeaderComponent,
     ProviderComponent,
-    CpfPipe
+    CpfPipe,
+    SearchFilterPipe
   ],
   imports: [
     BrowserModule,

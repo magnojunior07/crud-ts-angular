@@ -53,7 +53,7 @@
         </div>
         <div class="form-group">
             <label for="cpf" class="info-label">CPF</label>
-            <input type="text" [(ngModel)]="client.cpf" id="cpf" name="cpf" #cpf="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && cpf.invalid }" placeholder="Digite seu cpf">
+            <input type="text" mask="000.000.000-00" [showMaskTyped]="true" [(ngModel)]="client.cpf" id="cpf" name="cpf" #cpf="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && cpf.invalid }">
             <div *ngIf="f.submitted && cpf.invalid" class="invalid-feedback">
                 CPF é obrigatório
             </div>

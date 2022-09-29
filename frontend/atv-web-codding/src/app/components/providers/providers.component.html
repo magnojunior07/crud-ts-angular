@@ -33,7 +33,7 @@
             <tr>
               <td>{{provider.id}}</td>
               <td>{{provider.name}}</td>
-              <td>{{provider.cnpj}}</td>
+              <td>{{provider.cnpj | cnpj}}</td>
               <td>
                 <button type="button" class="btn btn-warning btn-sm"(click)="editProvider(provider)">Editar</button>
                 <button type="button" class="btn btn-danger btn-sm ml-1"(click)="deleteProvider(provider)">Deletar</button>
@@ -56,7 +56,7 @@
           </div>
           <div class="form-group">
               <label for="cnpj" class="info-label">CNPJ</label>
-              <input type="text" [(ngModel)]="provider.cnpj" id="cnpj" name="cnpj" #cnpj="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && cnpj.invalid }" placeholder="Digite seu cnpj">
+              <input type="text" mask="00.000.000/0000-00" [showMaskTyped]="true" [(ngModel)]="provider.cnpj" id="cnpj" name="cnpj" #cnpj="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && cnpj.invalid }">
               <div *ngIf="f.submitted && cnpj.invalid" class="invalid-feedback">
                   CNPJ é obrigatório
               </div>
